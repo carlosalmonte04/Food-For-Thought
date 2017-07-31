@@ -1,0 +1,13 @@
+<h1>Create New Post</h1>
+<%= form_for @post do |f|%>
+	<%= f.label :title %><br>
+	<%= f.text_field :title %><br><br>
+
+	<%= f.fields_for :topic_attributes do |t|%>
+		<%= t.label :topic %><br>
+		<%= t.select :id, Topic.all.collect{ |t| [ t.name, t.id ] }, include_blank: true %><br><br>
+	<% end %>
+	<%= f.label :description %><br>
+	<%= f.text_area :description %>
+	<%= f.submit "Create New Post"%>
+<% end %>

@@ -4,4 +4,8 @@ class User < ApplicationRecord
 	has_many :tutor_reservations, class_name: "Reservation", foreign_key: "tutor_id"
 	has_many :offers, foreign_key: "tutor_id"
 	has_many :ratings, through: :tutor_reservations
+
+	def full_name
+		self.first_name + " " + self.last_name
+	end
 end
