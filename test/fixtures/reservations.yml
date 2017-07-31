@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2017-07-31 15:20:01
+  status: MyString
+  post: one
+  student: one
+  tutor: one
+
+two:
+  time: 2017-07-31 15:20:01
+  status: MyString
+  post: two
+  student: two
+  tutor: two

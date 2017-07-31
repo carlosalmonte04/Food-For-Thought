@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  topic: MyString
+  compensation: MyString
+  length: MyString
+  deadline: 2017-07-31 15:21:18
+  description: MyText
+  student: one
+
+two:
+  status: MyString
+  topic: MyString
+  compensation: MyString
+  length: MyString
+  deadline: 2017-07-31 15:21:18
+  description: MyText
+  student: two
