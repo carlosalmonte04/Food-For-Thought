@@ -5,5 +5,11 @@ Rails.application.routes.draw do
   resources :posts
   resources :reservations
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/', to: "sessions#welcome", as: "welcome"
+  get '/signin', to: "sessions#new", as: "signin"
+  # post '/', to: "sessions#create", as: "login"
+  delete '/', to: "sessions#destroy", as: "logout"
+  get '/slack/auth', to: "sessions#create", as: "slack_login"
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731211932) do
+ActiveRecord::Schema.define(version: 20170801183319) do
 
   create_table "offers", force: :cascade do |t|
     t.integer "post_id"
@@ -61,11 +61,15 @@ ActiveRecord::Schema.define(version: 20170731211932) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "slack"
+    t.string "slack_id"
     t.text "description"
     t.string "cohort"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "username"
+    t.string "small_picture"
+    t.string "profile_picture"
   end
 
 end
