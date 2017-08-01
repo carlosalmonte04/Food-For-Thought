@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
 
 	def welcome
-		if logged_in?
-			redirect_to posts_path
-		else
+		# if logged_in?
+		# 	redirect_to posts_path
+		# else
 			@scopes = "users:read,reminders:write,reminders:read,links:write,chat:write:bot"
-			render :welcome
-		end
+		# 	render :welcome
+		# end
 	end
 
 
@@ -18,12 +18,12 @@ class SessionsController < ApplicationController
 		signin_url = "https://slack.com/api/oauth.access?client_id=#{ENV['SLACK_KEY']}&client_secret=#{ENV['SLACK_SECRET']}&code=#{code}&redirect_uri=http://localhost:3000/slack/auth"
 		# signin_url = "https://slack.com/api/oauth.access?client_id=#{ENV['SLACK_KEY']}&client_secret=#{ENV['SLACK_SECRET']}&code=#{code}&redirect_uri=https://foodforthought-app.herokuapp.com/slack/auth"
  		signin_data = JSON.parse(RestClient.get(signin_url))
- 
+
  		slack_user_id = signin_data["user_id"]
  		@user = User.find_by(slack_id: slack_user_id)
  		make_new_user(slack_user_id) unless @user
 
- 		
+
 		if @user
 			session[:user_id] = @user.id
 			redirect_to posts_path

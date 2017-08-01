@@ -44,8 +44,8 @@ end
 # send slack reminder after reservation created
 # search for slash commands
 # '/remind me in 10 minutes to drink a glass of water'
-# 
-# 
+#
+#
 # SEND INVITATION SEACH MENU BUTTONS
 # {
 #     "text": "Hey! Name_of_tutor would like to be your tutor.",
@@ -88,7 +88,7 @@ end
 #     ]
 # }
 
-# CREATE REMINDER 
+# CREATE REMINDER
 # reminders.add
 # reminders.complete
 # reminders.delete
