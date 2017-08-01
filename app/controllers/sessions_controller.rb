@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
 	def create
 		code = params[:code]
-		signin_url = "https://slack.com/api/oauth.access?client_id=#{ENV['SLACK_KEY']}&client_secret=#{ENV['SLACK_SECRET']}&code=#{code}&redirect_uri=http://localhost:3000/slack/auth"
+		signin_url = "https://slack.com/api/oauth.access?client_id=#{ENV['SLACK_KEY']}&client_secret=#{ENV['SLACK_SECRET']}&code=#{code}&redirect_uri=https://foodforthought-app.herokuapp.com/slack/auth"
  		signin_data = JSON.parse(RestClient.get(signin_url))
  
  		slack_user_id = signin_data["user_id"]
