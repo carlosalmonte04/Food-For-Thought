@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
 
 		user_info_url = "https://slack.com/api/users.info?token=#{token}&user=#{slack_user_id}&pretty=1"
  		user_info = JSON.parse(RestClient.get(user_info_url))
- 		byebug
+
  		username = user_info["user"]["name"]
  		first = user_info["user"]["profile"]["first_name"]
  		last = user_info["user"]["profile"]["last_name"]
