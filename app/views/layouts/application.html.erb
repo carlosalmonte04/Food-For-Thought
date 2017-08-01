@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <%= current_user.username if logged_in? %>
+    <%= (link_to current_user.username, user_path(current_user)) if logged_in? %>
     <%= button_to "Logout", logout_path, method: :delete %>
     <%= yield %>
   </body>
