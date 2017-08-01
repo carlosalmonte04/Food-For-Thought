@@ -1,8 +1,14 @@
 class SessionsController < ApplicationController
 
 	def welcome
-		@scopes = "users:read,reminders:write,reminders:read,links:write,chat:write:bot"
+		if logged_in?
+			redirect_to posts_path
+		else
+			@scopes = "users:read,reminders:write,reminders:read,links:write,chat:write:bot"
+			render :welcome
+		end
 	end
+
 
 	def new
 	end
@@ -39,11 +45,11 @@ class SessionsController < ApplicationController
 
 		user_info_url = "https://slack.com/api/users.info?token=#{token}&user=#{slack_user_id}&pretty=1"
  		user_info = JSON.parse(RestClient.get(user_info_url))
- 		
+ 		byebug
  		username = user_info["user"]["name"]
  		first = user_info["user"]["profile"]["first_name"]
  		last = user_info["user"]["profile"]["last_name"]
- 		email = user_info["user"]["profile"]["email"]
+ 		email = user_info["user"]["email"]
  		small_picture = user_info["user"]["profile"]["image_48"]
  		profile_picture = user_info["user"]["profile"]["image_192"]
 

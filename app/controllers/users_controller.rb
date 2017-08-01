@@ -15,9 +15,14 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		@user = User.find(session[:user_id])
 	end
 
 	def update
+		@user = User.find(session[:user_id])
+		@user.update(user_params)
+
+		redirect_to user_path(@user)
 	end
 
 	def show
@@ -25,7 +30,7 @@ class UsersController < ApplicationController
 	end
 
 	private
-		def user_params
-			params.require(:user).permit(:username, :first_name, :last_name, :slack, :email, :description, :cohort, :password, :password_confirmation)
-		end
+	def user_params
+		params.require(:user).permit(:username, :first_name, :last_name, :email, :description)
+	end
 end
