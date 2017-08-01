@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
 	def create
 		@post = Post.new(post_params)
-		@post.student = User.find_or_create_by(first_name: "Test", last_name: "Teste" )
+		@post.student = User.find(session[:user_id])
 		@post.save
 		redirect_to post_path(@post)
 	end

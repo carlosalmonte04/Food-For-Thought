@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
 
 	def create
 		code = params[:code]
-		signin_url = "https://slack.com/api/oauth.access?client_id=#{ENV['SLACK_KEY']}&client_secret=#{ENV['SLACK_SECRET']}&code=#{code}&redirect_uri=https://foodforthought-app.herokuapp.com/slack/auth"
+		signin_url = "https://slack.com/api/oauth.access?client_id=#{ENV['SLACK_KEY']}&client_secret=#{ENV['SLACK_SECRET']}&code=#{code}&redirect_uri=http://localhost:3000/slack/auth"
+		# signin_url = "https://slack.com/api/oauth.access?client_id=#{ENV['SLACK_KEY']}&client_secret=#{ENV['SLACK_SECRET']}&code=#{code}&redirect_uri=https://foodforthought-app.herokuapp.com/slack/auth"
  		signin_data = JSON.parse(RestClient.get(signin_url))
  
  		slack_user_id = signin_data["user_id"]
@@ -41,7 +42,7 @@ class SessionsController < ApplicationController
 
 	def make_new_user(slack_user_id)
 
-		token = "xoxp-220236530035-219655671264-220651827298-621effa93b0a661168b03cc3be29f8ec"
+		token = "xoxp-220236530035-219655671264-220096708608-3ff89be4fdeba882beb08cf6fea7dd96"
 
 		user_info_url = "https://slack.com/api/users.info?token=#{token}&user=#{slack_user_id}&pretty=1"
  		user_info = JSON.parse(RestClient.get(user_info_url))

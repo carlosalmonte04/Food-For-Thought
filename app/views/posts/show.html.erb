@@ -4,5 +4,8 @@
 <p>Length: <%= @post.length%></p>
 <p>Compensation: <%= @post.compensation%></p>
 
-
-
+<%unless @post.student.id == session[:user_id] %>
+	<%= form_for @post, url: offers_path, method: :post do |f|%>
+		<%= f.button "Offer your help!", name: :post_id, value: @post.id%>
+	<% end %>
+<% end %>

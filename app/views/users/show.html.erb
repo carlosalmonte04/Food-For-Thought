@@ -4,3 +4,6 @@
 	<li><%= @user.username%></li>
 	<li><%= @user.email%></li>
 </ul>
+
+<%= link_to "Edit Personal Info", edit_user_path(@user)%>
+<%= link_to "Create new post", new_post_path%>
