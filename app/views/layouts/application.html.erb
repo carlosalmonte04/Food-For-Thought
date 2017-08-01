@@ -9,8 +9,21 @@
   </head>
 
   <body>
-    <%= (link_to current_user.username, user_path(current_user)) if logged_in? %>
-    <%= button_to "Logout", logout_path, method: :delete %>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="row">
+        <div class="col-sm-3" style="color: white"><h2>FOOD FOR THOUGHT</h2></div>
+        <div class="col-sm-offset-8"></div>
+        <% if logged_in?%>
+         <div class="col-sm-1"><img src="<%= current_user.small_picture %>"></div>
+        <% end %>
+      </div>
+    </div>
+
+    
     <%= yield %>
+    <% if logged_in?%>
+    <%= button_to "Logout", logout_path, method: :delete %>
+    <%= (link_to current_user.username, user_path(current_user))%>
+    <%end%>
   </body>
 </html>
