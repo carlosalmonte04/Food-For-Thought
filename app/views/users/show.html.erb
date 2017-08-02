@@ -1,36 +1,48 @@
-<h3><%=@user.full_name%></h3>
-<img src="<%=@user.profile_picture%>"><br>
-<ul>
-	<li><%= @user.username%></li>
-	<li><%= @user.email%></li>
-</ul>
+<div class="panel panel-default col-md-12">
 
-<%= link_to "Edit Personal Info", edit_user_path(@user)%><br>
-<%= link_to "Create new post", new_post_path%><br><br>
+	<div class="col-md-4">
+		<h1><%=@user.full_name%></h1>
+		<img src="<%=@user.profile_picture%>" height="300" width="300"><br>
+		<h4><%= @user.username%></h4>
+		<h4><%= @user.email%></h4>
 
-<h5>Your posts</h5>
-<% @user.posts.each do |post|%>
-	<p><%= link_to post.title, post_path(post)%> | Status: <%=post.status%></p>
-<% end %>
+		<%= link_to "Edit personal info", edit_user_path(@user)%><br>
+		<%= link_to "Create new post", new_post_path%><br><br>
+	</div>
 
-<br>
-<br>
+	<div class="col-md-4">
+		<div>
+			<h3>Your posts</h3>
+			<% @user.posts.each do |post|%>
+				<p><%= link_to post.title, post_path(post)%> | Status: <%=post.status%></p>
+			<% end %>
+		</div>
+		<div >
+			<h3>Pending offers</h3>
+			<% @user.offers.each do |offer|%>
+				<p><%= link_to offer.post.title, post_path(offer.post)%></p>
+			<% end %>
+		</div>
+	</div>
 
-<h5>Upcoming Teaching Sessions</h5>
-<% @user.tutor_reservations.each do |reservation|%>
-	<p><%= link_to reservation.post.title, post_path(reservation.post)%> | On: <%=reservation.time.strftime("%m/%d/%Y")%></p>
-	<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
+	<div class="col-md-4">
+		<h3>Teaching Sessions</h3>
+		<% @user.tutor_reservations.each do |reservation|%>
+			<p><%= link_to reservation.post.title, post_path(reservation.post)%> | On: <%=reservation.time.strftime("%m/%d/%Y")%></p>
+			<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
 		<%= f.button "Cancel reservation with #{reservation.student.first_name}"%>
-	<% end %>
-<% end %>
+			<% end %>
+		<% end %>
 
-<br>
+		<br>
 
-<h5>Upcoming Learning Sessions</h5>
-<% @user.student_reservations.each do |reservation|%>
-	
-	<p><%= link_to reservation.post.title, post_path(reservation.post)%> | On: <%=reservation.time.strftime("%m/%d/%Y")%></p>
-	<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
-		<%= f.button "Cancel reservation with #{reservation.tutor.first_name}"%>
-	<% end %>
-<% end %>
+		<h3>Learning Sessions</h3>
+		<% @user.student_reservations.each do |reservation|%>
+			
+			<p><%= link_to reservation.post.title, post_path(reservation.post)%> | On: <%=reservation.time.strftime("%m/%d/%Y")%></p>
+			<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
+				<%= f.button "Cancel reservation with #{reservation.tutor.first_name}"%>
+			<% end %>
+		<% end %>
+	</div>
+</div>

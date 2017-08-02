@@ -10,9 +10,9 @@ class OffersController < ApplicationController
 
 		if @offer.save
 			flash[:message] = "Successfully offered help!"
-			redirect_to posts_path
+			redirect_to user_path(@user)
 		else
-			flash[:message] = @offer.errors[:tutor][0]
+			flash[:message] = @offer.errors[:tutor].join("\n")
 			redirect_to post_path(@post)
 		end
 	end

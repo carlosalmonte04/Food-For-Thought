@@ -14,6 +14,7 @@ class ReservationsController < ApplicationController
 			flash[:message] = "Successfully made reservation!"
 			@post.status = "reserved"
 			@post.save
+			Offer.destroy(@offer.id)
 			redirect_to posts_path
 		else
 			flash[:message] = @reservation.errors.values.flatten.join("\n")
@@ -22,7 +23,8 @@ class ReservationsController < ApplicationController
 	end
 
 	def destroy
-		post = Reservation.find(params[:id]).post
+		res = Reservation.find(params[:id])
+		post = res.post
 		post.status = "open"
 		post.save
 		Reservation.destroy(params[:id])

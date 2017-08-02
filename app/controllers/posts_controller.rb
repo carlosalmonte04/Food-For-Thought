@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
 
 	STOCK_PHOTOS = [
-		'stock_photo1.jpg',
-		'stock_photo2.jpg',
-		'stock_photo3.jpg',
-		'stock_photo4.jpg',
-		'stock_photo5.jpg',
-		'stock_photo6.jpg',
-		'stock_photo7.jpg',
-		'stock_photo8.jpg',
-		'stock_photo9.jpg'
+		"stock_photo1.jpg",
+		"stock_photo2.jpg",
+		"stock_photo3.jpg",
+		"stock_photo4.jpg",
+		"stock_photo5.jpg",
+		"stock_photo6.jpg",
+		"stock_photo7.jpg",
+		"stock_photo8.jpg",
+		"stock_photo9.jpg"
 	]
 
 	before_action :require_login
@@ -26,7 +26,10 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		@post.student = User.find(session[:user_id])
-		@post.picture_path ||= STOCK_PHOTOS.sample
+
+		if @post.picture_path.blank?
+			@post.picture_path = STOCK_PHOTOS.sample
+		end
 		@post.save
 		redirect_to post_path(@post)
 	end
@@ -48,7 +51,7 @@ class PostsController < ApplicationController
 	private
 
 	def post_params
-		params.require(:post).permit(:topic, :title, :compensation, :length, :deadline, :description, topic_attributes: [:id])
+		params.require(:post).permit(:topic, :title, :compensation, :length, :deadline, :description, :picture_path, topic_attributes: [:id])
 	end
 end
 

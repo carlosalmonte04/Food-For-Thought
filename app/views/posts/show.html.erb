@@ -1,26 +1,46 @@
 <%= flash[:message] %>
-<h1><%= @post.title%></h1>
-<p>Description: <%= @post.description %></p>
-<p>Student: <%= link_to @post.student.full_name, user_path(@post.student)%></p>
-<p>Length: <%= @post.length%></p>
-<p>Compensation: <%= @post.compensation%></p>
-<p>Deadline: <%= @post.deadline.strftime("%m/%d/%Y")%></p>
 
-<%unless @post.student.id == session[:user_id] %>
-	<%= form_for @post, url: offers_path, method: :post do |f|%>
-		<%= f.button "Offer your help!", name: :post_id, value: @post.id%>
-	<% end %>
-<% end %>
 
-<br><br>
+<div class="panel panel-default col-md-12">
 
-<% if @post.student == current_user%>
-	<h5>Offers to this post</h5>
-	<% @post.offers.each do |offer|%>
-		<%= link_to offer.tutor.full_name, user_path(offer.tutor)%>
-		<%= form_for :reservation, url: reservations_path, method: :post do |f|%>
-			<%= f.date_field :time %>
-			<%= f.button "Accept #{offer.tutor.first_name}'s help!", name: :offer_id, value: offer.id%><br>
+	<div class="col-md-3">
+		<h1><%=@post.title%></h1>
+		
+		<strong>Student: </strong><%= link_to @post.student.full_name, user_path(@post.student) %><br>
+		<strong>Topic: </strong><%= @post.topic.name%><br>
+		<strong>Length: </strong><%= @post.length%><br>
+		<strong>Compensation: </strong><%= @post.compensation%><br>
+		<strong>Deadline: </strong><%= @post.deadline.strftime("%m/%d/%Y")%><br><br>
+		<strong>Description: </strong><%=@post.description%>
+		<br><br>
+		<% if @post.student == current_user %> 
+			<%= (button_to "Edit post", edit_post_path(@post), class: "btn btn-primary") %>
+		<% else %>
+			<%= (button_to "Offer your help!", offers_path, params: {post_id: @post.id}, method: :post, name: :post_id, class: "btn btn-primary") %>
 		<% end %>
-	<% end %>
-<% end %>
+		<br>
+	</div>
+
+	
+
+	<div class="col-md-4">
+			<br><br><br>
+			<h5>Offers to this post</h5>
+			<% @post.offers.each do |offer|%>
+				<%= link_to offer.tutor.full_name, user_path(offer.tutor)%>
+				<%= form_for :reservation, url: reservations_path, method: :post do |f|%>
+					<%= f.date_field :time, class: "form_control" %>
+					<%= f.button "Accept #{offer.tutor.first_name}'s help!", name: :offer_id, value: offer.id, class: "btn btn-primary"%><br>
+				<% end %>
+			<% end %>
+	</div>
+
+	<div class="col-md-5">
+		<br>
+		<img src="<%=asset_path(@post.picture_path)%>" height="800" width="500" class = "img-responsive"><br>
+	</div>
+
+
+
+
+</div>

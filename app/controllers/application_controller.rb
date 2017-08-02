@@ -1,5 +1,22 @@
 require 'rest-client'
 require 'json'
+require 'dotenv'
+
+Dotenv.load('.env')
+
+  STOCK_PHOTOS = [
+    'stock_photo1.jpg',
+    'stock_photo2.jpg',
+    'stock_photo3.jpg',
+    'stock_photo4.jpg',
+    'stock_photo5.jpg',
+    'stock_photo6.jpg',
+    'stock_photo7.jpg',
+    'stock_photo8.jpg',
+    'stock_photo9.jpg'
+  ]
+
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :require_login, :current_user, :logged_in?

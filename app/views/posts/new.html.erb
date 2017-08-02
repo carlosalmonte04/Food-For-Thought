@@ -1,25 +1,65 @@
+
+
+<div class="panel panel-default col-md-4">
 <h1>Create New Post</h1>
 <%= form_for @post do |f|%>
-	<%= f.label :title %><br>
-	<%= f.text_field :title %><br><br>
 
-	<%= f.fields_for :topic_attributes do |t|%>
-		<%= t.label :topic %><br>
-		<%= t.select :id, Topic.all.collect{ |t| [ t.name, t.id ] }, include_blank: true %><br><br>
-	<% end %>
+	<div class="form-group"> 
+		<%= f.label :title %><br>
+		<%= f.text_field :title, class: "form-control" %>
+	</div>
 
-	<%= f.label :compensation%><br>
-	<%= f.text_field :compensation%><br><br>
+	<div class="form-group"> 
+		<%= f.fields_for :topic_attributes do |t|%>
+			<%= t.label :topic %><br>
+			<%= t.select :id, Topic.all.collect{ |t| [ t.name, t.id ] }, include_blank: true%>
+		<% end %>
+	</div>
 
-	<%= f.label :length %><br>
-	<%= f.text_field :length %><br><br>
+	<div class="form-group"> 
+		<%= f.label :description %><br>
+		<%= f.text_area :description, class: "form-control", rows: "6"%>
+	</div>
 
-	<%= f.label :deadline %><br>
-	<%= f.date_field :deadline %><br><br>
+	<div class="form-group"> 
+		<%= f.label :compensation%><br>
+		<%= f.text_field :compensation, class: "form-control"%>
+	</div>
 
-	<%= f.label :description %><br>
-	<%= f.text_area :description %>
+	<div class="form-group"> 
+		<%= f.label :length %><br>
+		<%= f.text_field :length, class: "form-control"%>
+	</div>
+
+	<div class="form-group"> 
+		<%= f.label :deadline %><br>
+		<%= f.date_field :deadline, class: "form-control"%>
+	</div>
 
 
-	<%= f.submit "Create New Post"%>
+
+	<div class="form-group"> 
+		<%= f.label "Link to a picture" %><br>
+		<%= f.text_field :picture_path, class: "form-control"%>
+	</div>
+
+
+
+	<%= f.submit "Create New Post", class: "btn btn-primary form-control"%>
+
+	<br><br>
+
+
 <% end %>
+</div>
+
+<div class="col-md-8">
+	<div class="jumbotron" style="background-image: url(<%=asset_path('new_post_img.jpg')%>);  background-size: cover; min-height: 730px">
+	<br><br><br>
+		<div style = "background-color: rgba(0,0,0,0.1); ">
+			<p style=" color: white; font-size: 500%" >Passing the assessment? <strong style="color: white" >Probably worth a burrito.</strong></p>
+		</div>
+	</div>
+</div>
+
+

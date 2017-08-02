@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :reservations
   belongs_to :topic
 
+
   def topic_attributes=(top)
 	  self.topic = Topic.find_by(top)
 	  self.save

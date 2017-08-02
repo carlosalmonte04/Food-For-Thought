@@ -3,7 +3,6 @@
   <head>
     <title>FoodForThought</title>
     <%= csrf_meta_tags %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -11,24 +10,25 @@
 
 
   <header>
-    <nav class="navbar navbar-inverse">
+    <nav class="container navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="<%= posts_path%>">food for thought</a>
         </div>
           <ul class="nav navbar-nav navbar-right">
             <%if logged_in?%>
-            <li><a href="<%= new_post_path %>">New Post</a></li>
+            <li><a href="<%= new_post_path %>">New Post&nbsp;<i class="fa fa-plus fa-inverse"></i></a></li>
             
             <li class="dropdown">
               <img src="<%=current_user.small_picture%>" height="42" width="42" class="img-circle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret" style="color: white"></span></a>
               <ul class="dropdown-menu">
-                  <li><%= link_to "Logout", logout_path, method: :delete %></li>
-                   <li><%= (link_to current_user.username, user_path(current_user))%></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                   <li><%= (link_to "My dashboard", user_path(current_user))%></li>
+                   <li><a href="#"></a></li>
+                   
+                
+                <li><a href="#">My posts</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
+                <li><%= link_to "Logout", logout_path, method: :delete %></li>
               </ul>
             </li>
             <% end %>
@@ -39,11 +39,13 @@
     </nav>
     </header>
     <body>
-    <div class="container"><%= yield %></div>
+    <div class="container">
+      <%= yield %>
+        
+      </div>
    
 
-   <hr>
-
+  <div class="container">
     <footer>
         <div class="row">
             <div class="col-lg-12">
@@ -51,6 +53,7 @@
             </div>
         </div>
     </footer>
+  </div>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

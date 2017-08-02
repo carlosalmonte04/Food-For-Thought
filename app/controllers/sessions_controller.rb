@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
 
 	def welcome
-		# if logged_in?
-		# 	redirect_to posts_path
-		# else
+		if logged_in?
+			redirect_to posts_path
+		else
 			@scopes = "users:read,reminders:write,reminders:read,links:write,chat:write:bot"
-		# 	render :welcome
-		# end
+			render :welcome
+		end
 	end
 
 
@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
 
 	def make_new_user(slack_user_id)
 
-		token = 'xoxp-220236530035-219655671264-221208917109-9e891802ffa5a3aaeedc95c6a2715fac'
+		token = ENV['SLACK_TOKEN']
 		user_info_url = "https://slack.com/api/users.info?token=#{token}&user=#{slack_user_id}&pretty=1"
  		user_info = JSON.parse(RestClient.get(user_info_url))
 
