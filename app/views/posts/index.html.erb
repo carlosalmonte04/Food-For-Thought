@@ -4,7 +4,7 @@
 <% @posts.each do |post|%>
 	<% unless post.status != "open"%>
 		<h4><%= link_to post.title, post_path(post)%></h4>
-		<p>Student: <%= post.student.full_name%></p>
+		<p>Student: <%= link_to post.student.full_name, user_path(post.student)%></p>
 		<p>Length: <%= post.length%></p>
 		<p>Compensation: <%= post.compensation%></p>
 
