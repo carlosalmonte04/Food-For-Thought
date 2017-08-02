@@ -5,6 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+	STOCK_PHOTOS = [
+		'stock_photo1.jpg',
+		'stock_photo2.jpg',
+		'stock_photo3.jpg',
+		'stock_photo4.jpg',
+		'stock_photo5.jpg',
+		'stock_photo6.jpg',
+		'stock_photo7.jpg',
+		'stock_photo8.jpg',
+		'stock_photo9.jpg'
+	]
 
 
 User.create([
@@ -48,12 +59,12 @@ Topic.create([
 	])
 	
 
-p1 = Post.new(title: "Trouble with Rails", compensation: "Burrito", length: "90 minutes", deadline: Date.today + 6.days, description: "Help me out, get a delicious burrito")
-p2 = Post.new(title: "Wut", compensation: "3 tacos", length: "70 minutes", deadline: Date.today + 2.days, description: "No idea what I'm doing")
-p3 = Post.new(title: "Halp", compensation: "Falafel sandwich", length: "80 minutes", deadline: Date.today + 4.days, description: "Don't know what's wrong with my code")
-p4 = Post.new(title: "Small issue", compensation: "Homemade Cookies", length: "30 minutes", deadline: Date.today + 2.days, description: "Little problem with forms")
-p5 = Post.new(title: "Gonna fail", compensation: "Steak", length: "120 minutes", deadline: Date.today + 9.days, description: "Oh god I don't know what I'm doing")
-p6 = Post.new(title: "Refactor", compensation: "Sushi", length: "45 minutes", deadline: Date.today + 10.days, description: "Not sure how to begin refactoring")
+p1 = Post.new(picture_path: STOCK_PHOTOS.sample, title: "Trouble with Rails", compensation: "Burrito", length: "90 minutes", deadline: Date.today + 6.days, description: "Help me out, get a delicious burrito")
+p2 = Post.new(picture_path: STOCK_PHOTOS.sample, title: "Wut", compensation: "3 tacos", length: "70 minutes", deadline: Date.today + 2.days, description: "No idea what I'm doing")
+p3 = Post.new(picture_path: STOCK_PHOTOS.sample, title: "Halp", compensation: "Falafel sandwich", length: "80 minutes", deadline: Date.today + 4.days, description: "Don't know what's wrong with my code")
+p4 = Post.new(picture_path: STOCK_PHOTOS.sample, title: "Small issue", compensation: "Homemade Cookies", length: "30 minutes", deadline: Date.today + 2.days, description: "Little problem with forms")
+p5 = Post.new(picture_path: STOCK_PHOTOS.sample, title: "Gonna fail", compensation: "Steak", length: "120 minutes", deadline: Date.today + 9.days, description: "Oh god I don't know what I'm doing")
+p6 = Post.new(picture_path: STOCK_PHOTOS.sample, title: "Refactor", compensation: "Sushi", length: "45 minutes", deadline: Date.today + 10.days, description: "Not sure how to begin refactoring")
 
 
 p1.student = User.all[0]

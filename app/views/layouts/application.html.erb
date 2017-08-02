@@ -6,26 +6,58 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="col-sm-3" style="color: white"><h2><a href=<%= posts_path%>>FOOD FOR THOUGHT</a></h2></div>
-        <div class="col-sm-offset-8"></div>
-        <% if logged_in?%>
-         <div class="col-sm-1"><img src="<%= current_user.small_picture %>"></div>
-        <% end %>
-    </div>
-    <br><br><br><br>
 
-    <div class="container">
-      <%= yield %>
+  <header>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="<%= posts_path%>">food for thought</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <%if logged_in?%>
+            <li><a href="<%= new_post_path %>">New Post</a></li>
+            
+            <li class="dropdown">
+              <img src="<%=current_user.small_picture%>" height="42" width="42" class="img-circle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret" style="color: white"></span></a>
+              <ul class="dropdown-menu">
+                  <li><%= link_to "Logout", logout_path, method: :delete %></li>
+                   <li><%= (link_to current_user.username, user_path(current_user))%></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+            <% end %>
 
-      <br><br><br>
-      <% if logged_in?%>
-      <%= button_to "Logout", logout_path, method: :delete %>
-      <%= (link_to current_user.username, user_path(current_user))%>
-      <%end%>
-    </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </header>
+    <body>
+    <div class="container"><%= yield %></div>
+   
+
+   <hr>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Food For Thought LLC 2017</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
   </body>
+
+
 </html>

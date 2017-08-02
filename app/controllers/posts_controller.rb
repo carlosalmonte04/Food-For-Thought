@@ -1,4 +1,17 @@
 class PostsController < ApplicationController
+
+	STOCK_PHOTOS = [
+		'stock_photo1.jpg',
+		'stock_photo2.jpg',
+		'stock_photo3.jpg',
+		'stock_photo4.jpg',
+		'stock_photo5.jpg',
+		'stock_photo6.jpg',
+		'stock_photo7.jpg',
+		'stock_photo8.jpg',
+		'stock_photo9.jpg'
+	]
+
 	before_action :require_login
 
 	def index
@@ -13,6 +26,7 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		@post.student = User.find(session[:user_id])
+		@post.picture_path ||= STOCK_PHOTOS.sample
 		@post.save
 		redirect_to post_path(@post)
 	end
@@ -21,15 +35,15 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 
-	def message_user
-		token = "token=xoxp-2727337933-202554058455-220319981716-935148097c1ac783a1e4ee0afc3a08c6&channel=G6G56GYSF"
-		base_url = "https://slack.com/api/chat.postMessage?"
-		message = params[:message] # message
-		channel = 'channel=' + ''# Post.user.slack
-		full_request_url = base_url + token + channel + message
-	# request = RestClient.get(url)
- 	# parse = JSON.parse(request)
-	end
+	# def message_user
+	# 	token = "token=xoxp-2727337933-202554058455-220319981716-935148097c1ac783a1e4ee0afc3a08c6&channel=G6G56GYSF"
+	# 	base_url = "https://slack.com/api/chat.postMessage?"
+	# 	message = params[:message] # message
+	# 	channel = 'channel=' + ''# Post.user.slack
+	# 	full_request_url = base_url + token + channel + message
+	# # request = RestClient.get(url)
+ # 	# parse = JSON.parse(request)
+	# end
 
 	private
 

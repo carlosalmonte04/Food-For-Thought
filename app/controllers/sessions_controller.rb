@@ -42,7 +42,8 @@ class SessionsController < ApplicationController
 
 	def make_new_user(slack_user_id)
 
-		user_info_url = "https://slack.com/api/users.info?token=#{process.env.SLACK_TOKEN}&user=#{slack_user_id}&pretty=1"
+		token = 'xoxp-220236530035-219655671264-221208917109-9e891802ffa5a3aaeedc95c6a2715fac'
+		user_info_url = "https://slack.com/api/users.info?token=#{token}&user=#{slack_user_id}&pretty=1"
  		user_info = JSON.parse(RestClient.get(user_info_url))
 
  		username = user_info["user"]["name"]
