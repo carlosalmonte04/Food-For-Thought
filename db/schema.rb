@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801183319) do
+ActiveRecord::Schema.define(version: 20170802003715) do
 
   create_table "offers", force: :cascade do |t|
     t.integer "post_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170801183319) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "status"
+    t.string "status", default: "open"
     t.string "compensation"
     t.string "length"
     t.datetime "deadline"

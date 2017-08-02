@@ -1,10 +1,14 @@
 <h1>Posts</h1>
 
+<%=flash[:message]%>
 <% @posts.each do |post|%>
-	<h4><%= link_to post.title, post_path(post)%></h4>
-	<p>Student: <%= post.student.full_name%></p>
-	<p>Length: <%= post.length%></p>
-	<p>Compensation: <%= post.compensation%></p>
+	<% unless post.status != "open"%>
+		<h4><%= link_to post.title, post_path(post)%></h4>
+		<p>Student: <%= post.student.full_name%></p>
+		<p>Length: <%= post.length%></p>
+		<p>Compensation: <%= post.compensation%></p>
+
+	<% end %>
 
 	<br>
 <% end %>

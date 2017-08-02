@@ -6,9 +6,15 @@ class OffersController < ApplicationController
 		@offer = Offer.new
 		@offer.post = @post
 		@offer.tutor = @user
-		@offer.save
 
-		redirect_to posts_path
+
+		if @offer.save
+			flash[:message] = "Successfully offered help!"
+			redirect_to posts_path
+		else
+			flash[:message] = @offer.errors[:tutor][0]
+			redirect_to post_path(@post)
+		end
 	end
 
 end

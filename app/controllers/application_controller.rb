@@ -3,7 +3,6 @@ require 'json'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :require_login, :current_user, :logged_in?
-
   def require_login
     unless logged_in?
       flash[:message] = "You must be logged in to access this section"

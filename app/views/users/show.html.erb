@@ -5,5 +5,32 @@
 	<li><%= @user.email%></li>
 </ul>
 
-<%= link_to "Edit Personal Info", edit_user_path(@user)%>
-<%= link_to "Create new post", new_post_path%>
+<%= link_to "Edit Personal Info", edit_user_path(@user)%><br>
+<%= link_to "Create new post", new_post_path%><br><br>
+
+<h5>Your posts</h5>
+<% @user.posts.each do |post|%>
+	<p><%= link_to post.title, post_path(post)%> | Status: <%=post.status%></p>
+<% end %>
+
+<br>
+<br>
+
+<h5>Upcoming Teaching Sessions</h5>
+<% @user.tutor_reservations.each do |reservation|%>
+	<p><%= link_to reservation.post.title, post_path(reservation.post)%> | On: <%=reservation.time.strftime("%m/%d/%Y")%></p>
+	<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
+		<%= f.button "Cancel reservation with #{reservation.student.first_name}"%>
+	<% end %>
+<% end %>
+
+<br>
+
+<h5>Upcoming Learning Sessions</h5>
+<% @user.student_reservations.each do |reservation|%>
+	
+	<p><%= link_to reservation.post.title, post_path(reservation.post)%> | On: <%=reservation.time.strftime("%m/%d/%Y")%></p>
+	<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
+		<%= f.button "Cancel reservation with #{reservation.tutor.first_name}"%>
+	<% end %>
+<% end %>

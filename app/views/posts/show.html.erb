@@ -1,11 +1,26 @@
+<%= flash[:message] %>
 <h1><%= @post.title%></h1>
 <p>Description: <%= @post.description %></p>
 <p>Student: <%= @post.student.full_name%></p>
 <p>Length: <%= @post.length%></p>
 <p>Compensation: <%= @post.compensation%></p>
+<p>Deadline: <%= @post.deadline.strftime("%m/%d/%Y")%></p>
 
 <%unless @post.student.id == session[:user_id] %>
 	<%= form_for @post, url: offers_path, method: :post do |f|%>
 		<%= f.button "Offer your help!", name: :post_id, value: @post.id%>
+	<% end %>
+<% end %>
+
+<br><br>
+
+<% if @post.student == current_user%>
+	<h5>Offers to this post</h5>
+	<% @post.offers.each do |offer|%>
+		<%= link_to offer.tutor.full_name, user_path(offer.tutor)%>
+		<%= form_for :reservation, url: reservations_path, method: :post do |f|%>
+			<%= f.date_field :time %>
+			<%= f.button "Accept #{offer.tutor.first_name}'s help!", name: :offer_id, value: offer.id%><br>
+		<% end %>
 	<% end %>
 <% end %>
