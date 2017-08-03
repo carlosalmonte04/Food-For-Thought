@@ -30,15 +30,11 @@
         <!-- Page Features -->
         <div class="row text-center">
 
-        	<% @posts.each do |post|%>
+          <% @posts.each do |post|%>
 				<% unless post.status != "open"%>
 		            <div class="col-md-3 hero-feature">
 		                <div class="thumbnail">
-                           <% if STOCK_PHOTOS.include?(post.picture_path)%>
-                                <img src="<%= asset_path(post.picture_path)%>" alt="">
-                            <% else %>
-		                        <img src="<%= post.picture_path%>" alt="">
-                            <% end %> 
+                        <img src="<%=post.student.profile_picture%>" width="800" height="500">
 		                    <div class="caption">
 		                        <h4><%= link_to post.title, post_path(post)%></h4>
 		                        <p><%= post.description[0..15] + "..."%></p>
