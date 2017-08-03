@@ -43,6 +43,7 @@ class PostsController < ApplicationController
 		@posts = Post.where(topic_id: Topic.find_by(name: params["topics"]))
 		@posts = Post.all if params["topics"] == "All"
 		render :index
+	end
 
 	def edit
 		@post = Post.find_by(id: params[:post_id])
