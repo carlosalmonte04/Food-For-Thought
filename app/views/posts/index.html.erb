@@ -2,7 +2,7 @@
 
         <header class="jumbotron hero-spacer" style="background-image: url(<%=asset_path('pizza2.jpg')%>);  background-size: cover; background-position-y: 27%;background-repeat: no-repeat;">
                 <h1 style="display: inline-block; color: white; background-color: rgba(0,0,0,0.1);">Help is here!</h1>
-                <p style="color: white; background-color: rgba(0,0,0,0.1);">Get started with a new post!</p>
+                <p style="color: white; background-color: rgba(0,0,0,0.1); width: 280px;">Get started with a new post!</p>
 
                 <p><%= link_to "New post", new_post_path, class: "btn btn-primary btn-large"%></p>
         </header>
@@ -30,7 +30,7 @@
         <!-- Page Features -->
         <div class="row text-center">
 
-          <% @posts.each do |post|%>
+        	<% @posts.each do |post|%>
 				<% unless post.status != "open"%>
 		            <div class="col-md-3 hero-feature">
 		                <div class="thumbnail">
