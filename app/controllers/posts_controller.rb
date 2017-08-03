@@ -33,8 +33,11 @@ class PostsController < ApplicationController
 		if @post.picture_path.blank?
 			@post.picture_path = STOCK_PHOTOS.sample
 		end
-		@post.save
-		redirect_to post_path(@post)
+			if @post.save
+				redirect_to post_path(@post)
+			else
+				render :new
+			end
 	end
 
 	def filter
@@ -48,7 +51,7 @@ class PostsController < ApplicationController
 	def show
 		@post = Post.find(params[:id])
 	end
-	
+
 	def edit
 		@post = Post.find_by(id: params[:post_id])
 	end

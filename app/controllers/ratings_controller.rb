@@ -9,8 +9,8 @@ class RatingsController < ApplicationController
 		@rating = Rating.new(value: rating_params[:value], comment: rating_params[:comment])
 		@reservation = Reservation.find_by(id: rating_params[:reservation_id])
 		@rating.reservation = @reservation
-		@tutor = User.find_by(id: rating_params[:tutor_id])
-byebug
+
+
 		if @rating.save
 			@reservation.update(status: "reviewed")
 			flash[:message] = "Successfully submitted rating"

@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
 		@tutor = @offer.tutor
 
 
-		@reservation = Reservation.new(time: DateTime.parse(params[:reservation][:time]), post: @post, student: @student, tutor: @tutor)
+		@reservation = Reservation.new(post: @post, student: @student, tutor: @tutor)
 
 
 		if @reservation.save

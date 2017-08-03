@@ -12,7 +12,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    
+
   </head>
 
 
@@ -25,15 +25,11 @@
           <ul class="nav navbar-nav navbar-right">
             <%if logged_in?%>
             <li><a href="<%= new_post_path %>">New Post&nbsp;<i class="fa fa-plus fa-inverse"></i></a></li>
-            
+
             <li class="dropdown avatar-holder">
               <img src="<%=current_user.small_picture%>" height="42" width="42" class="img-circle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret" style="color: white"></span></a>
               <ul class="dropdown-menu">
                    <li><%= (link_to "My dashboard", user_path(current_user))%></li>
-                   <li><a href="#"></a></li>
-                   
-                
-                <li><a href="#">My posts</a></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "Logout", logout_path, method: :delete %></li>
               </ul>
@@ -49,7 +45,7 @@
       <div class="container animated fadeIn">
 
       <%= yield %>
-        
+
       </div>
       <div class="container">
         <footer>
