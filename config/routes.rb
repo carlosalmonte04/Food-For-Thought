@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   # post '/', to: "sessions#create", as: "login"
   delete '/', to: "sessions#destroy", as: "logout"
   get '/slack/auth', to: "sessions#create", as: "slack_login"
-
+  post 'posts/filter', to: "posts#filter", as: "filter"
+  get'posts/filter', to: "posts#index"
 end

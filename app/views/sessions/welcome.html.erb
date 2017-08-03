@@ -2,10 +2,7 @@
 <header class="jumbotron hero-spacer" style="background-image: url(<%=asset_path('pizza2.jpg')%>);  background-size: cover; background-position-y: 27%;background-repeat: no-repeat;">
 	    <h1 style="display: inline-block; color: white">Welcome to </h1><h1 style="display: inline-block; color: orange">&nbsp;food for thought</h1>
 	    <p style="color: white ">Hungry for knowledge? Feed your mind or fill your belly by connecting with your Flatiron peers. </p>
+	    <% byebug %>
 	    <a href="https://slack.com/oauth/authorize?scope=<%=@scopes%>&client_id=<%=ENV['SLACK_KEY']%>&redirect_uri=http://localhost:3000/slack/auth"><img src="https://api.slack.com/img/sign_in_with_slack.png"></a>
 
 </header>
-
-
-<!-- <a href="https://slack.com/oauth/authorize?scope=<%=@scopes%>&client_id=<%=ENV['SLACK_KEY']%>&redirect_uri=https://foodforthought-app.herokuapp.com/slack/auth"><img src="https://api.slack.com/img/sign_in_with_slack.png"></a>
- -->
