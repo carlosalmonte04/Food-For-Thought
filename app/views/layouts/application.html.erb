@@ -9,7 +9,6 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
 
@@ -17,7 +16,7 @@
     <nav class="container navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="<%= posts_path%>">food for thought</a>
+          <a class="navbar-brand" href="<%= posts_path%>"><img id="logoOnHeader" class="animated fadeInUp"src="<%= asset_path('FFT_logo.png') %>" width="50" style="position: absolute;top: -1px;left: 25px;"><span style="position: relative;left: 47px;">food for thought</span></a>
         </div>
           <ul class="nav navbar-nav navbar-right">
             <%if logged_in?%>
@@ -42,8 +41,8 @@
       </div>
     </nav>
     </header>
-    <body>
-    <div class="container">
+    <body id="body" onload="fadeIn()" style="display: none">
+    <div class="container animated fadeIn">
       <%= yield %>
         
       </div>
@@ -64,6 +63,11 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
   </body>
-
+<script>
+function fadeIn() {
+  document.getElementById('body').style = "display: block"
+}
+  
+</script>
 
 </html>

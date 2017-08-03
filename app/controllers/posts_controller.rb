@@ -17,6 +17,9 @@ class PostsController < ApplicationController
 	def index
 		@posts = Post.all
 		@user = User.find(session[:user_id])
+		@topics = Topic.all.to_a
+		@topics.unshift(Topic.new(name: "All"))
+
 	end
 
 	def new
@@ -34,6 +37,13 @@ class PostsController < ApplicationController
 		redirect_to post_path(@post)
 	end
 
+	def filter
+		@topics = Topic.all.to_a
+		@topics.unshift(Topic.new(name: "All"))
+		@posts = Post.where(topic_id: Topic.find_by(name: params["topics"]))
+		@posts = Post.all if params["topics"] == "All"
+		render :index
+
 	def edit
 		@post = Post.find_by(id: params[:post_id])
 	end
@@ -42,11 +52,13 @@ class PostsController < ApplicationController
 		@post = Post.find_by(id: params[:id])
 		@post.update(post_params)
 		redirect_to posts_path(@post)
+
 	end
 
 	def show
 		@post = Post.find(params[:id])
 	end
+
 
 	# def message_user
 	# 	token = "token=xoxp-2727337933-202554058455-220319981716-935148097c1ac783a1e4ee0afc3a08c6&channel=G6G56GYSF"

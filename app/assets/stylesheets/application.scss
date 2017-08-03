@@ -11,7 +11,16 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
+ @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700'); 
  @import "font-awesome";
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "animate";
+
+.d-inline {
+	display: inline-block
+}
+
+h1,h2,h3,h4,h5,p,button,a {
+	font-family: 'Roboto Slab', serif;
+}
