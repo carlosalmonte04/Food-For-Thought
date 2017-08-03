@@ -1,10 +1,18 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <title>FoodForThought</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+        <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
   </head>
 
 
@@ -18,7 +26,7 @@
             <%if logged_in?%>
             <li><a href="<%= new_post_path %>">New Post&nbsp;<i class="fa fa-plus fa-inverse"></i></a></li>
             
-            <li class="dropdown">
+            <li class="dropdown avatar-holder">
               <img src="<%=current_user.small_picture%>" height="42" width="42" class="img-circle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret" style="color: white"></span></a>
               <ul class="dropdown-menu">
                    <li><%= (link_to "My dashboard", user_path(current_user))%></li>
@@ -37,34 +45,23 @@
       </div>
     </nav>
     </header>
-    <body id="body" onload="fadeIn()" style="display: none">
-    <div class="container animated fadeIn">
+    <body id="body">
+      <div class="container animated fadeIn">
+
       <%= yield %>
         
       </div>
-   
-
-  <div class="container">
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Food For Thought LLC 2017</p>
+      <div class="container">
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Food For Thought LLC 2017</p>
+                </div>
             </div>
-        </div>
-    </footer>
-  </div>
+        </footer>
+      </div>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
-<script>
-function fadeIn() {
-  document.getElementById('body').style = "display: block"
-}
-  
-</script>
 
 </html>

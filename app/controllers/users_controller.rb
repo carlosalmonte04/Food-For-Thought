@@ -10,9 +10,13 @@ class UsersController < ApplicationController
 			flash[:message] = "You've successfully signed up for Food For Thought!"
 			redirect_to posts_path
 		else
-			flash[:message] = @user.errors[:username].join("\n")
+			flash[:message] = "Please fill-in all values!"
 			render :new
 		end
+	end
+
+	def show
+		@user = User.find_by(id: params[:id])
 	end
 
 	def edit
@@ -26,11 +30,8 @@ class UsersController < ApplicationController
 		redirect_to user_path(@user)
 	end
 
-	def show
-		@user = User.find_by(id: params[:id])
-	end
-
 	private
+
 	def user_params
 		params.require(:user).permit(:username, :first_name, :last_name, :email, :description, :slack_id, :small_picture, :profile_picture)
 	end

@@ -1,0 +1,67 @@
+<div class="panel panel-default col-md-4">
+<h1>Rate <%= @tutor.username %></h1>
+<%= form_for :rating, url: ratings_path, method: :post do |f|%>
+        <br>
+					<%= f.label :value %>&nbsp;     	
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default">
+                	1<%= f.radio_button :value, 1 %>
+                </label> 
+                <label class="btn btn-default">
+                	2<%= f.radio_button :value, 2 %>
+                </label> 
+                <label class="btn btn-default">
+                	3<%= f.radio_button :value, 3 %>
+                </label> 
+                <label class="btn btn-default">
+                	4<%= f.radio_button :value, 4 %>
+                </label> 
+                <label class="btn btn-default">
+                	5<%= f.radio_button :value, 5 %>
+                </label>
+            </div>
+
+        <br><br>
+
+
+	<div class="form-group"> 
+		<%= f.label :comment %><br>
+		<%= f.text_area :comment, class: "form-control", rows: "6"%>
+	</div>
+
+	<%= f.hidden_field "tutor_id", value: @tutor.id %>
+	<%= f.hidden_field "reservation_id", value: @reservation_id %>
+	<%= f.submit "Submit your rating", class: "btn btn-primary form-control"%>
+
+	<br><br>
+
+
+<% end %>
+
+<form >
+    <div class="row">
+
+    </div>    
+</form>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="col-md-8">
+	<div class="jumbotron" style="background-image: url(<%=asset_path('new_post_img.jpg')%>);  background-size: cover; min-height: 730px">
+	<br><br><br>
+		<div style = "background-color: rgba(0,0,0,0.1); ">
+			<p style=" color: white; font-size: 500%" >Passing the assessment? <strong style="color: white" >Probably worth a burrito.</strong></p>
+		</div>
+	</div>
+</div>
+
+
+
+

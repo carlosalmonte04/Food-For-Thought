@@ -45,6 +45,10 @@ class PostsController < ApplicationController
 		render :index
 	end
 
+	def show
+		@post = Post.find(params[:id])
+	end
+	
 	def edit
 		@post = Post.find_by(id: params[:post_id])
 	end
@@ -55,11 +59,6 @@ class PostsController < ApplicationController
 		redirect_to posts_path(@post)
 
 	end
-
-	def show
-		@post = Post.find(params[:id])
-	end
-
 
 	# def message_user
 	# 	token = "token=xoxp-2727337933-202554058455-220319981716-935148097c1ac783a1e4ee0afc3a08c6&channel=G6G56GYSF"
