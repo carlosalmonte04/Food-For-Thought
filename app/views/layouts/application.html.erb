@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 
-<master branch>
-
-
 <html>
   <head>
     <title>FoodForThought</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+        <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
   </head>
 
 
@@ -41,33 +45,25 @@
       </div>
     </nav>
     </header>
-    <body id="body" onload="fadeIn()" style="display: none">
-    <div class="container animated fadeIn">
+    <body id="body">
+
+      <div class="container animated fadeIn">
       <%= yield %>
         
       </div>
 
-  <div class="container">
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Food For Thought LLC 2017</p>
+      <div class="container">
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Food For Thought LLC 2017</p>
+                </div>
             </div>
-        </div>
-    </footer>
-  </div>
+        </footer>
+      </div>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
-<script>
-function fadeIn() {
-  document.getElementById('body').style = "display: block"
-}
-  
-</script>
+
 
 </html>

@@ -16,8 +16,11 @@
                 <div class="d-inline">filter by topics:
                 </div>
                 <div class="d-inline"><%= form_tag filter_path do %>
-                    <%= select_tag "topics", options_from_collection_for_select(@topics, "name", "name") %>
+                    <div class="d-inline">
+                    <%= select_tag "topics", options_from_collection_for_select(@topics, "name", "name"), class: "form-control"%>
+                    </div>
                     <%= submit_tag 'search', class: 'btn btn-info' %>
+
                 <% end %>
                 </div>
             </div>
