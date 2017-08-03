@@ -60,8 +60,6 @@ class PostsController < ApplicationController
 
 	end
 
-
-
 	# def message_user
 	# 	token = "token=xoxp-2727337933-202554058455-220319981716-935148097c1ac783a1e4ee0afc3a08c6&channel=G6G56GYSF"
 	# 	base_url = "https://slack.com/api/chat.postMessage?"

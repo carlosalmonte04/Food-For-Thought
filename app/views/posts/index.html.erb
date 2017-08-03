@@ -17,9 +17,9 @@
                 </div>
                 <div class="d-inline"><%= form_tag filter_path do %>
                     <div class="d-inline">
-                        <%= select_tag "topics", options_from_collection_for_select(@topics, "name", "name"), class: "form-control selectpicker d-inline" %>
+                    <%= select_tag "topics", options_from_collection_for_select(@topics, "name", "name"), class: "form-control"%>
                     </div>
-                        <%= submit_tag 'search', class: 'btn btn-info' %>
+                    <%= submit_tag 'search', class: 'btn btn-info' %>
                 <% end %>
                 </div>
             </div>
