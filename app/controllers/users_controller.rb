@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 			flash[:message] = "You've successfully signed up for Food For Thought!"
 			redirect_to posts_path
 		else
-			flash[:message] = @user.errors[:username].join("\n")
+			flash[:message] = "Please fill-in all values!"
 			render :new
 		end
 	end
