@@ -21,7 +21,7 @@
 
         	<% @posts.each do |post|%>
 				<% unless post.status != "open"%>
-		            <div class="col-md-3 col-sm-6 hero-feature">
+		            <div class="col-md-3 hero-feature">
 		                <div class="thumbnail">
                            <% if STOCK_PHOTOS.include?(post.picture_path)%>
                                 <img src="<%= asset_path(post.picture_path)%>" alt="">
@@ -31,9 +31,8 @@
 		                    <div class="caption">
 		                        <h4><%= link_to post.title, post_path(post)%></h4>
 		                        <p><%= post.description[0..15] + "..."%></p>
-		                            <%= form_for post, url: offers_path, method: :post do |f|%>
-										<%= f.button "Offer help", name: :post_id, class: "btn btn-primary", value: post.id, data: {confirm: "Are you sure you want to offer help?"}%>
-									<% end %>
+
+                                    <%= (button_to "Offer", offers_path, params: {post_id: post.id}, method: :post, name: :post_id, class: "btn btn-primary") %>
 		                            <a href="<%=post_path(post)%>" class="btn btn-default">More info</a>
 		                    </div>
 		                </div>

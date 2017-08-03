@@ -7,10 +7,11 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			session[:user_id] = @user.id
+			flash[:message] = "You've successfully signed up for Food For Thought!"
 			redirect_to posts_path
 		else
-			flash[:message] = "Sign up failed"
-			redirect_to new_user_path
+			flash[:message] = @user.errors[:username].join("\n")
+			render :new
 		end
 	end
 
@@ -31,6 +32,6 @@ class UsersController < ApplicationController
 
 	private
 	def user_params
-		params.require(:user).permit(:username, :first_name, :last_name, :email, :description)
+		params.require(:user).permit(:username, :first_name, :last_name, :email, :description, :slack_id, :small_picture, :profile_picture)
 	end
 end

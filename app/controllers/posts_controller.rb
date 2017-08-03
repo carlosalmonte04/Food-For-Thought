@@ -34,6 +34,16 @@ class PostsController < ApplicationController
 		redirect_to post_path(@post)
 	end
 
+	def edit
+		@post = Post.find_by(id: params[:post_id])
+	end
+
+	def update
+		@post = Post.find_by(id: params[:id])
+		@post.update(post_params)
+		redirect_to posts_path(@post)
+	end
+
 	def show
 		@post = Post.find(params[:id])
 	end

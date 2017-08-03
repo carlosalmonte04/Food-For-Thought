@@ -5,7 +5,9 @@ class User < ApplicationRecord
 	has_many :offers, foreign_key: "tutor_id"
 	has_many :ratings, through: :tutor_reservations
 
+	validates :username, :first_name, :last_name, :email, :slack_id, presence: true
+
 	def full_name
-		self.first_name + " " + self.last_name
+		[self.first_name, self.last_name].join(" ")
 	end
 end
