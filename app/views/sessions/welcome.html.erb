@@ -1,7 +1,9 @@
 <p><%= flash[:message]%></p>
 <header class="jumbotron hero-spacer" style="background-image: url(<%=asset_path('pizza2.jpg')%>);  background-size: cover; background-position-y: 27%;background-repeat: no-repeat;">
-	    <h1 style="display: inline-block; color: white">Welcome to </h1><h1 style="display: inline-block; color: orange">&nbsp;food for thought</h1>
-	    <p style="color: white ">Hungry for knowledge? Feed your mind or fill your belly by connecting with your Flatiron peers. </p>
+	<div style="background-color: rgba(0,0,0,0.1); ">
+			<h1 style="display: inline-block; color: white">Welcome to <h1 style="display: inline-block; color: orange">&nbsp;food for thought</h1>
+		</div>
+	    </h1>
 
 	    <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.avatar&client_id=<%=ENV['SLACK_KEY']%>"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
 	 

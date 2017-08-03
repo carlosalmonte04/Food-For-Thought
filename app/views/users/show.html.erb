@@ -6,13 +6,11 @@
 		<h4>Username: <%= @user.username%></h4>
 		<h4>Email: <%= @user.email%></h4>
 		<div class="col-md-6">
-			<%= button_to "Edit personal info", edit_user_path(@user), method: :get, class: "btn btn-primary"%>
+			<%= button_to "Edit info", edit_user_path(@user), method: :get, class: "btn btn-primary btn-xs", style: "position: relative;left: -15px;"%>
 		</div>
-		<div class="col-md-6">
-			<%= button_to "Create new post", new_post_path, method: :get, class: "btn btn-primary"%><br><br>
-		</div>
+		<br><br>
 	</div>
-
+	
 	<div class="col-md-4">
 		<div>
 			<h3>Your posts</h3>
@@ -29,22 +27,37 @@
 	</div>
 
 	<div class="col-md-4">
-		<h3>Teaching Sessions</h3>
-		<% @user.tutor_reservations.each do |reservation|%>
-			<p><%= link_to reservation.post.title, post_path(reservation.post)%> | On: <%=reservation.time.strftime("%m/%d/%Y")%></p>
-			<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
-		<%= f.button "Cancel reservation with #{reservation.student.first_name}"%>
+		<h3>Teaching sessions</h3>
+			<% @user.tutor_reservations.each do |reservation|%>
+				<% unless reservation.status == "reviewed" %>
+					<div class="panel-default jumbotron" style="padding: 8px;margin-bottom: 5px;margin-top: 5px;">
+						<p><%= link_to reservation.post.title, post_path(reservation.post)%></p>
+						<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
+							<%= f.button "Cancel session", class: "btn btn-sm btn-danger"%>
+						<% end %>
+					</div>
+				<% end %>
 			<% end %>
-		<% end %>
 
 		<br>
 
-		<h3>Learning Sessions</h3>
+		<h3>Learning sessions</h3>
 		<% @user.student_reservations.each do |reservation|%>
-			
-			<p><%= link_to reservation.post.title, post_path(reservation.post)%> | On: <%=reservation.time.strftime("%m/%d/%Y")%></p>
-			<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
-				<%= f.button "Cancel reservation with #{reservation.tutor.first_name}"%>
+			<% unless reservation.status == "reviewed" %>
+				<div class="panel-default jumbotron" style="padding: 8px;margin-bottom: 5px;margin-top: 5px;">
+					<p><%= link_to reservation.post.title, post_path(reservation.post)%></p>
+					<div class="d-inline">
+						<%= form_for :review, url: new_rating_path, method: :get do |f| %>
+							<%= f.button "Review tutor", value: reservation.tutor.id, class: "btn btn-sm btn-success"-%>
+							<%= f.hidden_field :reservation_id, value: reservation.id %>
+						<% end %>
+					</div>
+					<div class="d-inline">
+						<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
+							<%= f.button "Cancel session", class: "btn btn-sm btn-danger"%>
+						<% end %>
+					</div>
+				</div>
 			<% end %>
 		<% end %>
 	</div>
