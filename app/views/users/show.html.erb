@@ -3,11 +3,14 @@
 	<div class="col-md-4">
 		<h1><%=@user.full_name%></h1>
 		<img src="<%=@user.profile_picture%>" height="300" width="300"><br>
-		<h4><%= @user.username%></h4>
-		<h4><%= @user.email%></h4>
-
-		<%= link_to "Edit personal info", edit_user_path(@user)%><br>
-		<%= link_to "Create new post", new_post_path%><br><br>
+		<h4>Username: <%= @user.username%></h4>
+		<h4>Email: <%= @user.email%></h4>
+		<div class="col-md-6">
+			<%= button_to "Edit personal info", edit_user_path(@user), method: :get, class: "btn btn-primary"%>
+		</div>
+		<div class="col-md-6">
+			<%= button_to "Create new post", new_post_path, method: :get, class: "btn btn-primary"%><br><br>
+		</div>
 	</div>
 
 	<div class="col-md-4">

@@ -6,7 +6,7 @@
 	<div class="col-md-3">
 		<h1><%=@post.title%></h1>
 		
-		<strong>Student: </strong><%= link_to @post.student.full_name, user_path(@post.student) %><br>
+		<strong>Student: </strong><%= link_to @post.student.username, user_path(@post.student) %><br>
 		<strong>Topic: </strong><%= @post.topic.name%><br>
 		<strong>Length: </strong><%= @post.length%><br>
 		<strong>Compensation: </strong><%= @post.compensation%><br>
@@ -14,7 +14,7 @@
 		<strong>Description: </strong><%=@post.description%>
 		<br><br>
 		<% if @post.student == current_user %> 
-			<%= (button_to "Edit post", edit_post_path(@post), class: "btn btn-primary") %>
+			<%= (button_to "Edit post", edit_post_path(@post), params: {post_id: @post.id}, method: :get, class: "btn btn-primary") %>
 		<% else %>
 			<%= (button_to "Offer your help!", offers_path, params: {post_id: @post.id}, method: :post, name: :post_id, class: "btn btn-primary") %>
 		<% end %>
@@ -26,12 +26,14 @@
 	<div class="col-md-4">
 			<br><br><br>
 			<h5>Offers to this post</h5>
+			<% if @post.student == current_user %> 
 			<% @post.offers.each do |offer|%>
 				<%= link_to offer.tutor.full_name, user_path(offer.tutor)%>
 				<%= form_for :reservation, url: reservations_path, method: :post do |f|%>
 					<%= f.date_field :time, class: "form_control" %>
 					<%= f.button "Accept #{offer.tutor.first_name}'s help!", name: :offer_id, value: offer.id, class: "btn btn-primary"%><br>
 				<% end %>
+			<% end %>
 			<% end %>
 	</div>
 

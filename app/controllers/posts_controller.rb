@@ -43,6 +43,16 @@ class PostsController < ApplicationController
 		@posts = Post.where(topic_id: Topic.find_by(name: params["topics"]))
 		@posts = Post.all if params["topics"] == "All"
 		render :index
+
+	def edit
+		@post = Post.find_by(id: params[:post_id])
+	end
+
+	def update
+		@post = Post.find_by(id: params[:id])
+		@post.update(post_params)
+		redirect_to posts_path(@post)
+
 	end
 
 	def show

@@ -30,7 +30,7 @@
 
         	<% @posts.each do |post|%>
 				<% unless post.status != "open"%>
-		            <div class="col-md-3 col-sm-6 hero-feature">
+		            <div class="col-md-3 hero-feature">
 		                <div class="thumbnail">
                            <% if STOCK_PHOTOS.include?(post.picture_path)%>
                                 <img src="<%= asset_path(post.picture_path)%>" alt="">
