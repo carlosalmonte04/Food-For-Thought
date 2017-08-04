@@ -34,8 +34,10 @@ class PostsController < ApplicationController
 			@post.picture_path = STOCK_PHOTOS.sample
 		end
 			if @post.save
+				flash[:message] = "Thanks for submitting a post, help is on the way!"
 				redirect_to post_path(@post)
 			else
+				flash[:message] = "Hey! You missed something!"
 				render :new
 			end
 	end
@@ -59,12 +61,12 @@ class PostsController < ApplicationController
 	def update
 		@post = Post.find_by(id: params[:id])
 		@post.update(post_params)
+		flash[:message] = "Good job gettin' your edit on!"
 		redirect_to posts_path(@post)
 
 	end
 
 	def destroy
-		byebug
 		@post = Post.find_by(id: params[:id])
 		@post.destroy
 		redirect_to posts_path

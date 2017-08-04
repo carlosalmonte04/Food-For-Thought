@@ -19,7 +19,7 @@
 
 Topic.create([
 	{name: "CSS"},
-	{name: "Git"}
+	{name: "Git"},
 	{name: "HTML"},
 	{name: "Javascript"},
 	{name: "Rails"},
