@@ -24,8 +24,8 @@
 
 
 	<div class="col-md-4">
-			<br><br><br>
-			<h5><strong>Offers to this post</strong></h5>
+			<br><br>
+			<h4><strong>Offers to this post</strong></h4>
 			<% if @post.student == current_user %>
 			<% @post.offers.each do |offer|%>
 				<%= link_to offer.tutor.full_name, user_path(offer.tutor)%><br>

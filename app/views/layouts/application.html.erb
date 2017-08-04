@@ -46,7 +46,9 @@
     </header>
     <body id="body">
       <div class="container animated fadeIn">
-
+        <div class="alert">
+          <p><%= flash[:message]%></p>
+        </div>
       <%= yield %>
 
       </div>
