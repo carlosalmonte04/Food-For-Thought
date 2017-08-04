@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   end
 
   def valid_date
-    if deadline.empty? || deadline < Date.today
+    if deadline.blank? || deadline < Date.today
       errors.add(:deadline, "Date is not valid")
     end
   end
