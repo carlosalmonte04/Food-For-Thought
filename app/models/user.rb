@@ -12,6 +12,10 @@ class User < ApplicationRecord
 	end
 
 	def avg_rating
-		self.ratings.pluck(:value).map(&:to_f).reduce(:+)/self.ratings.count
+		if self.ratings.present?
+			self.ratings.pluck(:value).map(&:to_f).reduce(:+)/self.ratings.count
+		else
+			"N/A"
+		end
 	end
 end
