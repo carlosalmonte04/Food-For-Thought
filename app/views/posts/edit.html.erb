@@ -4,50 +4,51 @@
 <h1>Edit Post</h1>
 <%= form_for @post do |f|%>
 
-	<div class="form-group"> 
+	<div class="form-group">
 		<%= f.label :title %><br>
 		<%= f.text_field :title, class: "form-control" %>
 	</div>
 
-	<div class="form-group"> 
+	<div class="form-group">
 		<%= f.fields_for :topic_attributes do |t|%>
 			<%= t.label :topic %><br>
 			<%= t.select :id, Topic.all.collect{ |t| [ t.name, t.id ] }, include_blank: true%>
 		<% end %>
 	</div>
 
-	<div class="form-group"> 
+	<div class="form-group">
 		<%= f.label :description %><br>
 		<%= f.text_area :description, class: "form-control", rows: "6"%>
 	</div>
 
-	<div class="form-group"> 
+	<div class="form-group">
 		<%= f.label :compensation%><br>
 		<%= f.text_field :compensation, class: "form-control"%>
 	</div>
 
-	<div class="form-group"> 
+	<div class="form-group">
 		<%= f.label :length %><br>
 		<%= f.text_field :length, class: "form-control"%>
 	</div>
 
-	<div class="form-group"> 
+	<div class="form-group">
 		<%= f.label :deadline %><br>
 		<%= f.date_field :deadline, class: "form-control"%>
 	</div>
 
 
 
-	<div class="form-group"> 
+	<div class="form-group">
 		<%= f.label "Link to a picture" %><br>
 		<%= f.text_field :picture_path, class: "form-control"%>
 	</div>
 
 
 
-	<%= f.submit "Edit Post", class: "btn btn-primary form-control"%>
+	<%= f.submit "Edit Post", class: "btn btn-primary form-control" %><br>
+	<%= button_to  "Delete Post", @post, class: "btn btn-danger form-control", style: "margin-top: 6px", method: :delete, data: {confirm: "Are you sure you want to delete your post?"}%>
 
-	<br><br>
+	<br>
 
 
 <% end %>
@@ -61,5 +62,3 @@
 		</div>
 	</div>
 </div>
-
-

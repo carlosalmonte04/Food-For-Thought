@@ -1,0 +1,19 @@
+<div class="col-md-4">
+  <% @user.ratings.each do |rating| %>
+    <div class="row">
+      <div class="panel panel-default" style="padding: 10px;margin-bottom: 5px;margin-top: 5px;">
+      <p><strong>Rating: </strong> <%= "★" * rating.value.to_i %><%= "☆" * (5 - rating.value.to_i) %></p>
+      <p><strong>Comment: </strong><%= rating.comment %></p><br>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<div class="col-md-8">
+	<div class="jumbotron" style="background-image: url(<%=asset_path('new_post_img.jpg')%>);  background-size: cover; min-height: 730px">
+	<br><br><br>
+		<div style = "background-color: rgba(0,0,0,0.1); ">
+			<p style=" color: white; font-size: 500%" >Do your peers ACTUALLY like you? <strong style="color: white" >Well, now you know.</strong></p>
+		</div>
+	</div>
+</div>

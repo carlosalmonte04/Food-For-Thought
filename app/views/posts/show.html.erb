@@ -4,16 +4,16 @@
 <div class="panel panel-default col-md-12">
 
 	<div class="col-md-3">
-		<h1><%=@post.title%></h1>
-		
-		<strong>Student: </strong><%= link_to @post.student.username, user_path(@post.student) %><br>
-		<strong>Topic: </strong><%= @post.topic.name%><br>
-		<strong>Length: </strong><%= @post.length%><br>
-		<strong>Compensation: </strong><%= @post.compensation%><br>
-		<strong>Deadline: </strong><%= @post.deadline.strftime("%m/%d/%Y")%><br><br>
-		<strong>Description: </strong><%=@post.description%>
+		<h3><%=@post.title%></h3>
+
+		<text><strong>Student: </strong><%= link_to @post.student.username, user_path(@post.student) %></text><br>
+		<text><strong>Topic: </strong><%= @post.topic.name%></text><br>
+		<text><strong>Length: </strong><%= @post.length%></text><br>
+		<text><strong>Compensation: </strong><%= @post.compensation%></text><br>
+		<text><strong>Deadline: </strong><%= @post.deadline.strftime("%m/%d/%Y")%></text><br>
+		<text><strong>Description: </strong><%=@post.description%></text>
 		<br><br>
-		<% if @post.student == current_user %> 
+		<% if @post.student == current_user %>
 			<%= (button_to "Edit post", edit_post_path(@post), params: {post_id: @post.id}, method: :get, class: "btn btn-primary") %>
 		<% else %>
 			<%= (button_to "Offer your help!", offers_path, params: {post_id: @post.id}, method: :post, name: :post_id, class: "btn btn-primary") %>
@@ -21,18 +21,19 @@
 		<br>
 	</div>
 
-	
+
 
 	<div class="col-md-4">
 			<br><br><br>
-			<h5>Offers to this post</h5>
-			<% if @post.student == current_user %> 
+			<h5><strong>Offers to this post</strong></h5>
+			<% if @post.student == current_user %>
 			<% @post.offers.each do |offer|%>
-				<%= link_to offer.tutor.full_name, user_path(offer.tutor)%>
-				<%= form_for :reservation, url: reservations_path, method: :post do |f|%>
-					<%= f.date_field :time, class: "form_control" %>
-					<%= f.button "Accept #{offer.tutor.first_name}'s help!", name: :offer_id, value: offer.id, class: "btn btn-primary"%><br>
+				<%= link_to offer.tutor.full_name, user_path(offer.tutor)%><br>
+				<a href="https://flatiron-school.slack.com/messages/@<%=offer.tutor.username%>", class= 'btn btn-success btn-sm' target ='_blank'%>Slack</a>
+				<%= form_for :reservation, url: reservations_path, html: {class: 'd-inline'}, method: :post do |f|%>
+					<%= f.button "Accept offer!", name: :offer_id, value: offer.id, class: "btn btn-warning btn-sm"%><br>
 				<% end %>
+				<br>
 			<% end %>
 			<% end %>
 	</div>
@@ -41,8 +42,3 @@
 		<br>
 		<img src="<%=asset_path(@post.picture_path)%>" height="800" width="500" class = "img-responsive"><br>
 	</div>
-
-
-
-
-</div>
