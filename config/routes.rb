@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'posts/filter', to: "posts#index"
   resources :topics
   resources :ratings
   resources :offers
@@ -12,5 +13,5 @@ Rails.application.routes.draw do
   delete '/', to: "sessions#destroy", as: "logout"
   get '/slack/auth', to: "sessions#create", as: "slack_login"
   post 'posts/filter', to: "posts#filter", as: "filter"
-  get'posts/filter', to: "posts#index"
+
 end

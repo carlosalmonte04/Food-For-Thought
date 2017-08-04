@@ -19,7 +19,6 @@ class PostsController < ApplicationController
 		@user = User.find(session[:user_id])
 		@topics = Topic.all.to_a
 		@topics.unshift(Topic.new(name: "All"))
-
 	end
 
 	def new
@@ -46,6 +45,7 @@ class PostsController < ApplicationController
 		@posts = Post.where(topic_id: Topic.find_by(name: params["topics"]))
 		@posts = Post.all if params["topics"] == "All"
 		render :index
+
 	end
 
 	def show
