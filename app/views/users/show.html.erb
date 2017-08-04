@@ -5,12 +5,13 @@
 		<img src="<%=@user.profile_picture%>" height="300" width="300"><br>
 		<h4>Username: <%= @user.username%></h4>
 		<h4>Email: <%= @user.email%></h4>
+		<h4>Average rating: <%= @user.avg_rating.to_s[0..3] %> (<%= link_to "All ratings", user_ratings_path%>)</h4>
 		<div class="col-md-6">
 			<%= button_to "Edit info", edit_user_path(@user), method: :get, class: "btn btn-primary btn-xs", style: "position: relative;left: -15px;"%>
 		</div>
 		<br><br>
 	</div>
-	
+
 	<div class="col-md-4">
 		<div>
 			<h3>Your posts</h3>
