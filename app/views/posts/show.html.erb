@@ -1,6 +1,3 @@
-<%= flash[:message] %>
-
-
 <div class="panel panel-default col-md-12">
 
 	<div class="col-md-3">
@@ -29,7 +26,7 @@
 			<% if @post.student == current_user %>
 			<% @post.offers.each do |offer|%>
 				<%= link_to offer.tutor.full_name, user_path(offer.tutor)%><br>
-				<a href="https://flatiron-school.slack.com/messages/@<%=offer.tutor.username%>", class= 'btn btn-success btn-sm' target ='_blank'%>Slack</a>
+				<a href="https://flatiron-school.slack.com/messages/@<%=offer.tutor.username.gsub(" ", "_")%>", class= 'btn btn-success btn-sm' target ='_blank'%>Slack</a>
 				<%= form_for :reservation, url: reservations_path, html: {class: 'd-inline'}, method: :post do |f|%>
 					<%= f.button "Accept offer!", name: :offer_id, value: offer.id, class: "btn btn-warning btn-sm"%><br>
 				<% end %>
