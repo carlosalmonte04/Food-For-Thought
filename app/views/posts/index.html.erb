@@ -1,5 +1,3 @@
-<%=flash[:message]%>
-
         <header class="jumbotron hero-spacer" style="background-image: url(<%=asset_path('pizza2.jpg')%>);  background-size: cover; background-position-y: 27%;background-repeat: no-repeat;">
                 <h1 style="display: inline-block; color: white; background-color: rgba(0,0,0,0.1);">Help is here!</h1>
                 <p style="color: white; background-color: rgba(0,0,0,0.1); width: 280px;">Get started with a new post!</p>
@@ -30,20 +28,24 @@
         <!-- Page Features -->
         <div class="row text-center">
 
-        	<% @posts.each do |post|%>
-				<% unless post.status != "open"%>
-		            <div class="col-md-3 hero-feature">
-		                <div class="thumbnail">
-                        <img src="<%=post.student.profile_picture%>" width="800" height="500">
-		                    <div class="caption">
-		                        <h4><%= link_to post.title, post_path(post)%></h4>
-		                        <p><%= post.description[0..15] + "..."%></p>
-		                            <%= form_for post, url: offers_path, :html => {class: 'd-inline'} ,method: :post do |f|%>
-										<%= f.button "Offer help", name: :post_id, class: "btn btn-primary", value: post.id, data: {confirm: "Are you sure you want to offer help?"}%>
-									<% end %>
-		                            <a href="<%=post_path(post)%>" class="btn btn-default">More info</a>
-		                    </div>
-		                </div>
-		            </div>
+            <% i = 0 %>
+            <% @posts.each do |post|%>
+                <% unless post.status != "open"%>
+                    <%= raw "<div class='row'>" if i%4 == 0%>
+    		            <div class="col-md-3 hero-feature">
+    		                <div class="thumbnail">
+                            <img src="<%=post.student.profile_picture%>" width="800" height="500">
+    		                    <div class="caption">
+    		                        <h4><%= link_to post.title, post_path(post)%></h4>
+    		                        <p><%= post.description[0..15] + "..."%></p>
+    		                            <%= form_for post, url: offers_path, :html => {class: 'd-inline'} ,method: :post do |f|%>
+    										<%= f.button "Offer help", name: :post_id, class: "btn btn-primary", value: post.id, data: {confirm: "Are you sure you want to offer help?"}%>
+    									<% end %>
+    		                            <a href="<%=post_path(post)%>" class="btn btn-default">More info</a>
+    		                    </div>
+    		                </div>
+    		            </div>
+                    <%= raw "</div>"if i%4 == 3%>
+                    <%i += 1%>
 	          	<% end %>
 	        <% end %>

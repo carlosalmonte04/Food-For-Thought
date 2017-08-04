@@ -46,7 +46,11 @@
     </header>
     <body id="body">
       <div class="container animated fadeIn">
-
+        <% if flash[:message].present? %>
+          <div class="alert alert-info">
+            <p><%= flash[:message]%></p> 
+          </div>
+        <% end %>
       <%= yield %>
 
       </div>

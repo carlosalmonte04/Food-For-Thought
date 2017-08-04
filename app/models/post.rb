@@ -5,16 +5,16 @@ class Post < ApplicationRecord
   belongs_to :topic
 
   validates :deadline, :title, :description, :compensation, :topic, presence: true
-  validate :after_now
+  validate :valid_date
 
   def topic_attributes=(top)
 	  self.topic = Topic.find_by(top)
 	  self.save
   end
 
-  def after_now
-    if deadline < Date.today
-      errors.add(:deadline, "Date must be today or later")
+  def valid_date
+    if deadline.blank? || deadline < Date.today
+      errors.add(:deadline, "Date is not valid")
     end
   end
 end
