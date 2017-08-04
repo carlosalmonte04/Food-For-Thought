@@ -2,33 +2,31 @@
 
 	<div class="col-md-4">
 		<h1><%=@user.full_name%></h1>
-		<img src="<%=@user.profile_picture%>" height="300" width="300"><br>
-		<h4>Username: <%= @user.username%></h4>
-		<h4>Email: <%= @user.email%></h4>
-		<h4>Average rating: <%= @user.avg_rating.to_s[0..3] %> (<%= link_to "All ratings", user_ratings_path%>)</h4>
+		<img src="<%=@user.profile_picture%>" class="img-rounded" height="300" width="300"><br>
+		<h4><i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;<%= @user.username%></h4>
+		<h5><i class="fa fa-envelope fa-lg"></i>&nbsp;&nbsp;<%= @user.email%></h5>
+		<% if @user.ratings.present? %>
+			<h4>Average rating: <%= @user.avg_rating.to_s[0..3] %> (<%= link_to "All ratings", user_ratings_path%>)</h4>
+		<% end %>
 		<div class="col-md-6">
 			<%= button_to "Edit info", edit_user_path(@user), method: :get, class: "btn btn-primary btn-xs", style: "position: relative;left: -15px;"%>
 		</div>
 		<br><br>
 	</div>
 
-	<div class="col-md-4">
-		<div>
-			<h3>Your posts</h3>
-			<% @user.posts.each do |post|%>
-				<p><%= link_to post.title, post_path(post)%> | Status: <%=post.status%></p>
-			<% end %>
+	<div class="row col-md-8" style="margin-top: 66px;">
+		<div class="col-md-6" style="min-height: 220px;">
+			<h3 style="margin-top: 10px;">Posts</h3>
+			<div class="table">
+				<% @user.posts.each do |post|%>
+					<p><%= link_to post.title, post_path(post)%> | Status: <%=post.status%></p>
+				<% end %>
+			</div>
 		</div>
-		<div >
-			<h3>Pending offers</h3>
-			<% @user.offers.each do |offer|%>
-				<p><%= link_to offer.post.title, post_path(offer.post)%></p>
-			<% end %>
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<h3>Teaching sessions</h3>
+		<div class="col-md-6" style="min-height: 220px">
+			<div>
+				<h3 style="margin-top: 10px;">Teaching sessions</h3>
+			</div>
 			<% @user.tutor_reservations.each do |reservation|%>
 				<% unless reservation.status == "reviewed" %>
 					<div class="panel-default jumbotron" style="padding: 8px;margin-bottom: 5px;margin-top: 5px;">
@@ -39,27 +37,43 @@
 					</div>
 				<% end %>
 			<% end %>
-
-		<br>
-
-		<h3>Learning sessions</h3>
-		<% @user.student_reservations.each do |reservation|%>
-			<% unless reservation.status == "reviewed" %>
-				<div class="panel-default jumbotron" style="padding: 8px;margin-bottom: 5px;margin-top: 5px;">
-					<p><%= link_to reservation.post.title, post_path(reservation.post)%></p>
-					<div class="d-inline">
-						<%= form_for :review, url: new_rating_path, method: :get do |f| %>
-							<%= f.button "Review tutor", value: reservation.tutor.id, class: "btn btn-sm btn-success"-%>
-							<%= f.hidden_field :reservation_id, value: reservation.id %>
-						<% end %>
-					</div>
-					<div class="d-inline">
-						<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
-							<%= f.button "Cancel session", class: "btn btn-sm btn-danger"%>
-						<% end %>
-					</div>
+		</div>
+		
+</div>
+	<div class="row col-md-8" >
+		<div class="col-md-6" style="min-height:220px">
+			<% if @user.id == current_user.id %>
+			<div>
+				<div>
+					<h3 style="margin-top: 10px;">Pending offers</h3>
 				</div>
+				<% @user.offers.each do |offer|%>
+					<p><%= link_to offer.post.title, post_path(offer.post)%></p>
+				<% end %>
+			</div>
 			<% end %>
-		<% end %>
+		</div>
+			
+			<div class="col-md-6">
+			<h3 style="margin-top: 10px;">Learning sessions</h3>
+			<% @user.student_reservations.each do |reservation|%>
+				<% unless reservation.status == "reviewed" %>
+					<div class="panel-default jumbotron" style="padding: 8px;margin-bottom: 5px;margin-top: 5px;">
+						<p><%= link_to reservation.post.title, post_path(reservation.post)%></p>
+						<div class="d-inline">
+							<%= form_for :review, url: new_rating_path, method: :get do |f| %>
+								<%= f.button "Review tutor", value: reservation.tutor.id, class: "btn btn-sm btn-success"-%>
+								<%= f.hidden_field :reservation_id, value: reservation.id %>
+							<% end %>
+						</div>
+						<div class="d-inline">
+							<%= form_for reservation, url: reservation_path(reservation), method: :delete do |f|%>
+								<%= f.button "Cancel session", class: "btn btn-sm btn-danger"%>
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
 	</div>
 </div>
