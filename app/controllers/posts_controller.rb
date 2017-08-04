@@ -64,7 +64,6 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		byebug
 		@post = Post.find_by(id: params[:id])
 		@post.destroy
 		redirect_to posts_path
