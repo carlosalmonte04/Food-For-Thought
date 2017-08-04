@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get '/slack/auth', to: "sessions#create", as: "slack_login"
   post 'posts/filter', to: "posts#filter", as: "filter"
   get'posts/filter', to: "posts#index"
+  get '/users/:id/ratings', to: "users#ratings", as: "user_ratings"
 end
